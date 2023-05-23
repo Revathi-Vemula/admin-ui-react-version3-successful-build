@@ -1,0 +1,101 @@
+.button-outline-none {
+    border-style: none;
+    background-color: transparent;
+  }
+  
+  .input-checkbox-style {
+    height: 15px;
+    width: 15px;
+  }
+  
+  .label-data {
+    font-family: 'Verdana';
+    font-size: 13px;
+  }
+  
+  .selected-row {
+    background-color: lightgray;
+  }
+  
+  .popup-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f5f7fa;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    padding: 20px;
+    width: 45%;
+    height: 65%;
+  }
+  
+  .close-button {
+    border-style: none;
+    background-color: transparent;
+    align-self: flex-end;
+  }
+  
+  .modal-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+  }
+  
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  
+  .input-field {
+    width: 70%;
+    padding-left: 5px;
+    outline: none;
+    font-size: 16px;
+    font-family: cursive;
+  }
+  
+  .label-name {
+    font-weight: 600;
+    font-family: 'Helvetica';
+    font-size: 14px;
+  }
+  
+  .heading-popup {
+    font-size: 17px;
+    font-weight: 600;
+    font-family: 'Helvetica';
+  }
+  
+  .form-buttons-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-self: flex-end;
+  }
+  
+  .button-cancel {
+    background-color: transparent;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #000000;
+    font-family: 'Helvetica';
+    width: 90px;
+    padding: 8px;
+    margin-right: 10px;
+    border: solid 1px grey;
+  }
+  
+  .button-submit {
+    color: #ffffff;
+    background-color: #0284c7;
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: 'Helvetica';
+    width: 90px;
+    padding: 8px;
+    margin-right: 10px;
+    border-style: none;
+  }
+  

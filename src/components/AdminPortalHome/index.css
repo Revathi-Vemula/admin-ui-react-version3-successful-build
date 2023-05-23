@@ -1,0 +1,52 @@
+.button-custom-delete {
+    border-radius: 20px;
+    padding: 8px;
+    font-size: 12px;
+    height: 40px;
+    width: 130px;
+    background-color: #cc0000;
+    border-style: none;
+    color: #ffffff;
+    font-family: 'Verdana';
+  }
+  
+  .input-style {
+    height: 15px;
+    width: 15px;
+  }
+  
+  .button-page {
+    border: solid 2px #3399ff;
+    background-color: transparent;
+    height: 35px;
+    width: 35px;
+    border-radius: 100%;
+    font-size: 15px;
+    color: #3399ff;
+    font-weight: bold;
+    margin: 10px;
+    cursor: pointer;
+  }
+  
+  .button-page:disabled {
+    opacity: 0.33;
+    cursor: not-allowed;
+  }
+  
+  .active-page-button {
+    background-color: #3399ff;
+    color: #ffffff;
+  }
+  
+  .table-footer-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+  }
+  
+  .pagination-container {
+    margin-left: 100px;
+  }
+  
