@@ -1,16 +1,36 @@
 .button-outline-none {
     border-style: none;
     background-color: transparent;
+
+  }
+
+  .actions-container{
+    display: flex;
+    flex-direction: row;
+    margin-top:3px;
+    @media screen and (min-width:768px){
+      
+      margin-top:2px;
+    }
   }
   
   .input-checkbox-style {
-    height: 15px;
-    width: 15px;
+    height: 12px;
+    width: 12px;
+
+    @media screen and (min-width:768px){
+      height:15px;
+      width:15px;
+    }
   }
   
   .label-data {
     font-family: 'Verdana';
-    font-size: 13px;
+    font-size: 10px;
+
+    @media screen and (min-width:768px){
+      font-size:13px;
+    }
   }
   
   .selected-row {
@@ -22,11 +42,16 @@
     flex-direction: column;
     align-items: center;
     background-color: #f5f7fa;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
     border-radius: 20px;
     padding: 20px;
-    width: 45%;
-    height: 65%;
+    width: 85%;
+    height: 55%;
+
+    @media screen and (min-width:768px){
+      width: 45%;
+      height: 65%;
+    }
   }
   
   .close-button {
@@ -49,11 +74,15 @@
   }
   
   .input-field {
-    width: 70%;
+    width: 90%;
     padding-left: 5px;
     outline: none;
     font-size: 16px;
     font-family: cursive;
+
+    @media screen and (min-width:768px){
+      width:70%
+    }
   }
   
   .label-name {

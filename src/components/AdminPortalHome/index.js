@@ -48,9 +48,9 @@ const AdminPortalHome = () => {
     const filteredUsersList = usersList.filter(eachUser => {
       const {name, email, role} = eachUser
       if (
-        name.includes(searchValue) ||
-        email.includes(searchValue) ||
-        role.includes(searchValue)
+        name.toLowerCase().includes(searchValue) ||
+        email.toLowerCase().includes(searchValue) ||
+        role.toLowerCase().includes(searchValue)
       ) {
         return eachUser
       }
@@ -114,12 +114,9 @@ const AdminPortalHome = () => {
 
     updatedUserDetails.splice(userIndex, 1, user)
     setUsersList(updatedUserDetails)
-    setCurrentItems(
-      updatedUserDetails.slice(
-        currentPage * pageSize,
-        pageSize * (currentPage + 1),
-      ),
-    )
+    let updatedCurrentItems = updatedUserDetails.slice(currentPage * pageSize, pageSize * (currentPage + 1))
+    console.log(updatedCurrentItems)
+    setCurrentItems(updatedCurrentItems)
   }
 
   const onChangeSelectAll = event => {
@@ -168,93 +165,104 @@ const AdminPortalHome = () => {
     }
   }
 
-  const renderUsersList = () => (
-    <div className="container">
-      <div className="row">
-        <div className="col-12">
-          <div className="mt-3">
-            <input
-              type="search"
-              className="form-control w-100"
-              placeholder="Search by name,email or role"
-              id="search"
-              value={searchInput}
-              onChange={onChangeSearchInput}
-            />
-            {/* Display table */}
-            <table className="table mt-2">
-              <thead>
-                <tr>
-                  <th scope="col">
-                    <input
-                      type="checkbox"
-                      id="allSelectCheckBox"
-                      checked={selectAll}
-                      onChange={onChangeSelectAll}
-                      className="input-style"
-                    />
-                  </th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Role</th>
-                  <th scope="col">Actions</th>
-                </tr>
-              </thead>
-              {/* edit user details */}
-              <tbody>
-                {usersList.length > 0 ? (
-                  currentItems.map(eachUser => (
-                    <UserDetails
+  const renderUsersList = () => {
+    const disabledClass = selectedUsers.length === 0 ? 'button-disabled':''
+
+    return (
+    <div className="main-container">
+      <div className='search-button-container-small'>
+          <input
+            type="search"
+            className="search-input-style"
+            placeholder="Search by Name,Email or Role"
+            id="search"
+            value={searchInput}
+            onChange={onChangeSearchInput}
+          />
+          <button
+            type="button"
+            disabled = {selectedUsers.length === 0}
+            className={`button-custom-delete button-display-small ${disabledClass}`}
+            id="deleteAllSmall"
+            onClick={onClickDeleteAll}
+          >
+            Delete All
+          </button>
+      </div>
+
+      {/* Display table */}
+      <table className="table table-hover mt-1">
+        <thead>
+          <tr>
+            <th scope="col" className='column-select'>
+              <input
+                type="checkbox"
+                id="allSelectCheckBox"
+                checked={selectAll}
+                onChange={onChangeSelectAll}
+                className="input-style"
+              />
+            </th>
+            <th scope="col" className='column-name'>Name</th>
+            <th scope="col" className='column-email'>Email</th>
+            <th scope="col" className='column-role'>Role</th>
+            <th scope="col" className='column-actions'>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {usersList.length > 0 ? (
+              currentItems.map(eachUser => (
+                  <UserDetails
                       userData={eachUser}
                       key={eachUser.id}
                       deleteUser={onDeleteUser}
                       updateUser={onUpdateUserDetails}
                       checked={selectAll || selectedUsers.includes(eachUser.id)}
                       handleSelectedUser={onChangeSelectedUser}
-                    />
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan="5" rowSpan="8">
+                  />
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="5" rowSpan="8">
                       Oops! No Users Found!
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
-          <div className="table-footer-container">
-            <button
-              type="button"
-              className="button-custom-delete"
+                  </td>
+                </tr>
+              )}
+        </tbody>
+      </table>
+          
+      <div className="table-footer-container">
+          <button
+              type="button" disabled = {selectedUsers.length === 0}
+              className={`button-custom-delete button-display-medium ${disabledClass}`}
               id="deleteAll"
               onClick={onClickDeleteAll}
-            >
-              Delete Selected
-            </button>
-            {/* Pagination */}
-            <div className="pagination-container">
-              {/* Skip to start page Button */}
-              <button
+          >
+            Delete Selected
+          </button>
+          
+          {/* Pagination */}
+          <div className="pagination-container">
+            {/* Skip to start page Button */}
+            <button
                 type="button"
                 className="button-page"
                 disabled={currentPage === 0}
                 onClick={() => onClickPageChange(0)}
-              >
-                <MdKeyboardDoubleArrowLeft size={25} />
-              </button>
-
+            >
+                <MdKeyboardDoubleArrowLeft size={22} />
+            </button>
               {/* Previous Button */}
-              <button
+            <button
                 type="button"
                 className="button-page"
                 onClick={() => onClickPageChange(currentPage - 1)}
                 disabled={currentPage === 0}
-              >
+            >
                 <FcPrevious size={15} />
-              </button>
-
-              {Array(pageCount)
+            </button>
+            {Array(pageCount)
                 .fill(null)
                 .map((page, index) => (
                   <button
@@ -266,35 +274,35 @@ const AdminPortalHome = () => {
                     onClick={() => onClickPageChange(index)}
                   >
                     {index + 1}
-                  </button>
-                ))}
+                  </button>))
+            }
               {/* Next Button */}
-              <button
+            <button
                 type="button"
                 className="button-page"
                 onClick={() => onClickPageChange(currentPage + 1)}
                 disabled={currentPage === pageCount - 1}
-              >
-                <FcNext size={15} />
-              </button>
-
+            >
+              <FcNext size={15} />
+            </button>
               {/* Skip to last page Button */}
-              <button
+            <button
                 type="button"
                 className="button-page"
                 onClick={() => onClickPageChange(pageCount - 1)}
                 disabled={currentPage === pageCount - 1}
-              >
-                <MdKeyboardDoubleArrowRight size={25} />
-              </button>
-            </div>
+            >
+              <MdKeyboardDoubleArrowRight size={22} />
+            </button>
           </div>
-        </div>
       </div>
     </div>
   )
+}
 
   return <div>{renderUsersList()}</div>
 }
 
 export default AdminPortalHome
+
+

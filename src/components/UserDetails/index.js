@@ -48,7 +48,7 @@ const UserDetails = props => {
 
   return (
     <tr className={checked ? 'selected-row' : ''}>
-      <td>
+      <td className=''>
         <input
           type="checkbox"
           id={id}
@@ -58,27 +58,27 @@ const UserDetails = props => {
           className="input-checkbox-style"
         />
       </td>
-      <td>
+      <td className=''>
         <label className="label-data" htmlFor={id}>
           {name}
         </label>
       </td>
-      <td>
+      <td className=''>
         <label className="label-data" htmlFor={id}>
           {email}
         </label>
       </td>
-      <td>
+      <td className=''>
         <label className="label-data" htmlFor={id}>
           {role}
         </label>
       </td>
-      <td>
+      <td className='actions-container'>
         <Popup
           modal
           trigger={
             <button type="button" className="button-outline-none">
-              <FiEdit size={20} />
+              <FiEdit size={15} />
             </button>
           }
           className="popup-content"
@@ -156,7 +156,7 @@ const UserDetails = props => {
           className="button-outline-none"
           onClick={onClickDeleteUser}
         >
-          <AiOutlineDelete color="#cc0000" size={23} />
+          <AiOutlineDelete color="#cc0000" size={20} />
         </button>
       </td>
     </tr>
